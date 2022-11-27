@@ -15,11 +15,11 @@ This project is a 3D game created using raycasting. Its an open world game which
 
 REQUIREMENTS
 ------------
-All files are compiled with Ubuntu 20.* LTS
-All files are [Betty](https://github.com/holbertonschool/Betty) Compliant.
-[SDL2](https://www.libsdl.org/)
-[Raycasting](https://permadi.com/1996/05/ray-casting-tutorial-table-of-contents/)
-All standard system calls are allowed on project
+- All files are compiled with Ubuntu 20.* LTS
+- All files are [Betty](https://github.com/holbertonschool/Betty) Compliant.
+- [SDL2](https://www.libsdl.org/)
+- [Raycasting](https://permadi.com/1996/05/ray-casting-tutorial-table-of-contents/)
+- All standard system calls are allowed on project
 
 RUNNING
 -------
@@ -37,10 +37,10 @@ ROADMAP
 
 CONTRIBUTING
 ------------
-Max 40 lines per function
-Max 80 columns long
-Not more than 5 functions per file
-Use feature-based branching to add new feature to master
+- Max 40 lines per function
+- Max 80 columns long
+- Not more than 5 functions per file
+- Use feature-based branching to add new feature to master
 
 AUTHORS
 -------
