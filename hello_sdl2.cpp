@@ -11,8 +11,8 @@ const int SCREEN_HEIGHT = 480;
 SDL_Window* gWindow = NULL;
 SDL_Surface* gScreenSurface = NULL;
 SDL_Surface* gHelloWorld = NULL;
-SDL_Surface* gXOut = NULL;
-
+SDL_Surface* gCurrentSurface = NULL;
+SDL_Surface* gKeyPressSurfaces[KEY_PRESS_SURFACE_TOTAL];
 
 
 /**
@@ -33,25 +33,48 @@ int main(int argc, char* args[])
 						printf("Failed to load media!\n");
 				else
 				{
-						//Apply Image
-						SDL_BlitSurface(gHelloWorld,
-										NULL,
-										gScreenSurface,
-										NULL);
-						//Update Surface
-						SDL_UpdateWindowSurface(gWindow);
 						SDL_Event e;
 						bool quit = false;
+						gCurrentSurface = gKeyPressSurfaces[KEY_PRESS_SURFACE_DEFAULT];
+
 						while(quit == false)
 						{
 								while(SDL_PollEvent(&e))
 								{
 										if(e.type == SDL_QUIT)
 												quit = true;
+								
+										else if (e.type == SDL_KEYDOWN)
+										{
+												switch(e.key.keysym.sym)
+												{
+														case SDLK_UP:
+														gCurrentSurface = gKeyPressSurfaces[KEY_PRESS_SURFACE_UP];
+														break;
+
+														case SDLK_DOWN:
+														gCurrentSurface = gKeyPressSurfaces[KEY_PRESS_SURFACE_DOWN];
+														break;
+
+														case SDLK_LEFT:
+														gCurrentSurface = gKeyPressSurfaces[KEY_PRESS_SURFACE_LEFT];
+														break;
+
+														case SDLK_RIGHT:
+														gCurrentSurface = gKeyPressSurfaces[KEY_PRESS_SURFACE_RIGHT];
+														break;
+
+														default:
+														gCurrentSurface: gKeyPressSurfaces[KEY_PRESS_SURFACE_DEFAULT];
+														break;
+
+												}
+										}
 								}
-								SDL_BlitSurface(gXOut, NULL, gScreenSurface, NULL);
+								SDL_BlitSurface(gCurrentSurface, NULL, gScreenSurface, NULL);
 
 								SDL_UpdateWindowSurface(gWindow);
+
 						}
 				}
 		}
