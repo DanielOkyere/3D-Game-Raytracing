@@ -25,7 +25,7 @@ RUNNING
 -------
 All files are compiled with 
 ```bash
-gcc -Wall -Werror -Wextra -pendatic
+g++ -lSDL2 *.cpp -o app
 ```
 
 ROADMAP
