@@ -12,7 +12,7 @@ SDL_Window* gWindow = NULL;
 SDL_Surface* gScreenSurface = NULL;
 SDL_Surface* gHelloWorld = NULL;
 SDL_Surface* gCurrentSurface = NULL;
-SDL_Surface* gKeyPressSurfaces[KEY_PRESS_SURFACE_TOTAL];
+SDL_Surface* gStretchedSurface = NULL;
 
 
 /**
@@ -35,7 +35,6 @@ int main(int argc, char* args[])
 				{
 						SDL_Event e;
 						bool quit = false;
-						gCurrentSurface = gKeyPressSurfaces[KEY_PRESS_SURFACE_DEFAULT];
 
 						while(quit == false)
 						{
@@ -44,34 +43,13 @@ int main(int argc, char* args[])
 										if(e.type == SDL_QUIT)
 												quit = true;
 								
-										else if (e.type == SDL_KEYDOWN)
-										{
-												switch(e.key.keysym.sym)
-												{
-														case SDLK_UP:
-														gCurrentSurface = gKeyPressSurfaces[KEY_PRESS_SURFACE_UP];
-														break;
-
-														case SDLK_DOWN:
-														gCurrentSurface = gKeyPressSurfaces[KEY_PRESS_SURFACE_DOWN];
-														break;
-
-														case SDLK_LEFT:
-														gCurrentSurface = gKeyPressSurfaces[KEY_PRESS_SURFACE_LEFT];
-														break;
-
-														case SDLK_RIGHT:
-														gCurrentSurface = gKeyPressSurfaces[KEY_PRESS_SURFACE_RIGHT];
-														break;
-
-														default:
-														gCurrentSurface: gKeyPressSurfaces[KEY_PRESS_SURFACE_DEFAULT];
-														break;
-
-												}
-										}
 								}
-								SDL_BlitSurface(gCurrentSurface, NULL, gScreenSurface, NULL);
+								SDL_Rect stretchRect;
+								stretchRect.x = 0;
+								stretchRect.y = 0;
+								stretchRect.w = SCREEN_WIDTH;
+								stretchRect.h = SCREEN_HEIGHT;
+								SDL_BlitScaled(gStretchedSurface, NULL, gScreenSurface, &stretchRect);
 
 								SDL_UpdateWindowSurface(gWindow);
 

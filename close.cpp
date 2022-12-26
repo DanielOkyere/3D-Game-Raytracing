@@ -6,12 +6,8 @@
 void close()
 {
 		//Deallocate surfaces
-		for (int i = 0; i < KEY_PRESS_SURFACE_TOTAL; ++i)
-		{
-				SDL_FreeSurface(gKeyPressSurfaces[i]);
-				gKeyPressSurfaces[i] = NULL;
-
-		}
+		SDL_FreeSurface(gStretchedSurface);
+		gStretchedSurface = NULL;
 
 		//Destroy window
 		SDL_DestroyWindow(gWindow);
